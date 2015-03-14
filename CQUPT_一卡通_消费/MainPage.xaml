@@ -1,0 +1,102 @@
+﻿<Page
+    x:Class="CQUPT_一卡通_消费.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CQUPT_一卡通_消费"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="#38b58f">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <Grid Margin="15">
+                <TextBlock Name="TitleTextBlock" Text="一卡通消费查询" FontSize="40" HorizontalAlignment="Center"></TextBlock>
+            </Grid>
+            <Grid Margin="15,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" ></ColumnDefinition>
+                    <ColumnDefinition Width="1*" ></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Name="cardNameTextBlock" FontSize="15" Text="姓名：张三" Grid.Column="0" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Name="cardIdTextBlock" FontSize="15" Text="卡号：1000000" Grid.Column="1" HorizontalAlignment="Center"></TextBlock>
+            </Grid>
+
+            <Grid Background="LightGray">
+                <Grid Margin="15,10,15,0" Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*" ></ColumnDefinition>
+                        <ColumnDefinition Width="auto" ></ColumnDefinition>
+                        <ColumnDefinition Width="2*" ></ColumnDefinition>
+                        <ColumnDefinition Width="auto" ></ColumnDefinition>
+                        <ColumnDefinition Width="2*" ></ColumnDefinition>
+                        <ColumnDefinition Width="auto" ></ColumnDefinition>
+                        <ColumnDefinition Width="2*" ></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="时间" Margin="5" FontSize="25" HorizontalAlignment="Center" Grid.Column="0" Foreground="Black"></TextBlock>
+                    <TextBlock Text="类型" Margin="5" FontSize="25" HorizontalAlignment="Center" Grid.Column="2" Foreground="Black"></TextBlock>
+                    <TextBlock Text="金额" Margin="5" FontSize="25" HorizontalAlignment="Center" Grid.Column="4" Foreground="Black"></TextBlock>
+                    <TextBlock Text="余额" Margin="5" FontSize="25" HorizontalAlignment="Center" Grid.Column="6" Foreground="Black"></TextBlock>
+                    <Line Y1="0" Y2="40"  Stroke="Gray" StrokeThickness="1" Grid.Column="1"></Line>
+                    <Line Y1="0" Y2="40"  Stroke="Gray" StrokeThickness="1" Grid.Column="3"></Line>
+                    <Line Y1="0" Y2="40"  Stroke="Gray" StrokeThickness="1" Grid.Column="5"></Line>
+
+                </Grid>
+            </Grid>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <ScrollViewer Background="LightGray" HorizontalAlignment="Stretch" >
+                <ListView  Margin="15,0,15,0" Name="CardListView" IsItemClickEnabled="True" ItemClick="CardListView_ItemClick" HorizontalAlignment="Stretch">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="White">
+                                <Line X1="0" X2="1000" Stroke="Gray" StrokeThickness="1"></Line>
+                                <Grid Name="ListItemGrid" HorizontalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4*" ></ColumnDefinition>
+                                        <ColumnDefinition Width="auto" ></ColumnDefinition>
+                                        <ColumnDefinition Width="2*" ></ColumnDefinition>
+                                        <ColumnDefinition Width="auto" ></ColumnDefinition>
+                                        <ColumnDefinition Width="2*" ></ColumnDefinition>
+                                        <ColumnDefinition Width="auto" ></ColumnDefinition>
+                                        <ColumnDefinition Width="2*" ></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding sj}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Foreground="Black"></TextBlock>
+                                    <TextBlock Text="{Binding lx}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Foreground="Black"></TextBlock>
+                                    <TextBlock Text="{Binding je}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Foreground="Black"></TextBlock>
+                                    <TextBlock Text="{Binding ye}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="6" Foreground="Black"></TextBlock>
+                                    <Line Y1="0" Y2="40"  Stroke="Gray" StrokeThickness="1" Grid.Column="1"></Line>
+                                    <Line Y1="0" Y2="40"  Stroke="Gray" StrokeThickness="1" Grid.Column="3"></Line>
+                                    <Line Y1="0" Y2="40"  Stroke="Gray" StrokeThickness="1" Grid.Column="5"></Line>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+
+
+    <Page.BottomAppBar>
+        <CommandBar Opacity="1">
+            <AppBarButton Name="Back" Label="上一页" Icon="Back" Click="Back_Click"></AppBarButton>
+            <AppBarButton Name="Rotate" Label="刷新" Icon="Rotate" Click="Rotate_Click"></AppBarButton>
+            <AppBarButton Name="Forward" Label="下一页" Icon="Forward" Click="Forward_Click"></AppBarButton>
+            <AppBarButton Name="Flag" Label="图书借阅" Icon="Flag" Click="Flag_Click"></AppBarButton>
+
+            <!--显示按钮-->
+            <CommandBar.SecondaryCommands>
+                <!--隐藏菜单-->
+                <AppBarButton Label="关于" Click="AppBarButton_Click"></AppBarButton>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+
+</Page>

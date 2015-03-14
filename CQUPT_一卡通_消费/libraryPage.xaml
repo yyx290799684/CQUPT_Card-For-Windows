@@ -1,0 +1,58 @@
+﻿<Page
+    x:Class="CQUPT_一卡通_消费.libraryPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CQUPT_一卡通_消费"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="#38b58f">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <Grid Margin="15">
+                <TextBlock Name="TitleTextBlock" Text="图书借阅查询" FontSize="40" HorizontalAlignment="Center"></TextBlock>
+            </Grid>
+            <Grid Margin="15,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" ></ColumnDefinition>
+                    <ColumnDefinition Width="1*" ></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Name="cardNameTextBlock" FontSize="15" Text="姓名：" Grid.Column="0" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Name="cardIdTextBlock" FontSize="15" Text="卡号：" Grid.Column="1" HorizontalAlignment="Center"></TextBlock>
+            </Grid>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <ScrollViewer Background="LightGray" HorizontalAlignment="Stretch" >
+                <ListView  Margin="15,10" Name="LibraryListView" IsItemClickEnabled="True" HorizontalAlignment="Stretch">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="White" Margin="0,5,0,0">
+                                <StackPanel>
+                                    <TextBlock Margin="2,10" Name="BookName" Text="{Binding tsmc}" FontSize="20" FontWeight="Bold" Foreground="#38b58f"></TextBlock>
+                                    <Line Stroke="Gray" Margin="5,0" X1="0" X2="1000" StrokeThickness="1"></Line>
+                                    <Grid Margin="10,5">
+                                        <TextBlock Name="BookStart" Text="{Binding jsrq}" FontSize="15" Foreground="Gray"></TextBlock>
+                                        <TextBlock Name="BookFinsh" Text="{Binding yhrq}" FontSize="15" Foreground="Gray" HorizontalAlignment="Right"></TextBlock>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
+
+            <StackPanel Name="NullBookStackPanel" Visibility="Collapsed" VerticalAlignment="Center">
+                <Image Source="Assets/emoji.png" Width="200" Margin="0,20"></Image>
+                <TextBlock Text="看来你不是个爱读书的孩子" FontSize="20" HorizontalAlignment="Center" Foreground="Black"></TextBlock>
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</Page>

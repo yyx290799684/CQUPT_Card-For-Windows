@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="CQUPT_一卡通_消费.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CQUPT_一卡通_消费"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="#38b58f">
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="10" Grid.Row="0">
+            <TextBlock Name="TitleTextBlock" Text="关于" FontSize="40" HorizontalAlignment="Center"></TextBlock>
+        </StackPanel>
+        <Grid Grid.Row="1" Background="LightGray">
+            <StackPanel Margin="0,40,0,0">
+                <Image Source="Assets/iconfont-huiyuanqia.png" Width="150"></Image>
+                <TextBlock Text="重邮一卡通 For Windows" FontSize="25" Foreground="Black" HorizontalAlignment="Center"></TextBlock>
+
+                <TextBlock Text="特别声明:此App为本人业余开发，使用学校的数据，接口版权属于重庆邮电大学，本人不保证数据正确，此App目的在于服务学生，别无其余目的，若有侵权行为，请联系本人。" Margin="15,40" FontSize="20" Foreground="Black" TextWrapping="WrapWholeWords"></TextBlock>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

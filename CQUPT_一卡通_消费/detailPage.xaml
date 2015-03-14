@@ -1,0 +1,61 @@
+﻿<Page
+    x:Class="CQUPT_一卡通_消费.detailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CQUPT_一卡通_消费"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="#38b58f">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="10" Grid.Row="0">
+            <TextBlock Name="TitleTextBlock" Text="消费详情" FontSize="40" HorizontalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Background="LightGray">
+            <Grid Margin="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid Background="White" Margin="5" Grid.Row="0">
+                    <TextBlock Name="jylsTextBlock" Margin="5" Text="流水线号" FontSize="25" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                </Grid>
+                <Grid Background="White" Margin="5" Grid.Row="1">
+                    <TextBlock Name="xmTextBlock" Margin="5" Text="姓名" FontSize="25" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                </Grid>
+                <Grid Background="White" Margin="5" Grid.Row="2">
+                    <TextBlock Name="sjTextBlock" Margin="5" Text="发生时间" FontSize="25" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                </Grid>
+                <Grid Background="White" Margin="5" Grid.Row="3">
+                    <TextBlock Name="lxTextBlock" Margin="5" Text="类型" FontSize="25" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                </Grid>
+                <Grid Background="White" Margin="5" Grid.Row="4">
+                    <TextBlock Name="jeTextBlock" Margin="5" Text="金额" FontSize="25" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                </Grid>
+                <Grid Background="White" Margin="5" Grid.Row="5">
+                    <TextBlock Name="yeTextBlock" Margin="5" Text="余额" FontSize="25" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                </Grid>
+                <Grid Background="White" Margin="5" Grid.Row="6">
+                    <TextBlock Name="shTextBlock" Margin="5" Text="商户" FontSize="25" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                </Grid>
+                <Grid Background="White" Margin="5" Grid.Row="7">
+                    <TextBlock Name="sbTextBlock" Margin="5" Text="设备" FontSize="25" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
