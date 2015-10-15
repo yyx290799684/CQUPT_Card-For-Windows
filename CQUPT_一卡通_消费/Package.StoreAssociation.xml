@@ -190,6 +190,7 @@
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
+    <MainPackageIdentityName>59134yyx.TimeSeizer</MainPackageIdentityName>
     <MainPackageIdentityName>59134yyx.25498FCB18E52</MainPackageIdentityName>
     <MainPackageIdentityName>59134yyx.564804764A7D8</MainPackageIdentityName>
     <MainPackageIdentityName>59134yyx.1</MainPackageIdentityName>
@@ -201,7 +202,7 @@
     <PackageInfo>
       <OsMinVersion>6.3.0.0</OsMinVersion>
       <PackageArchitecture>neutral</PackageArchitecture>
-      <PackageMaxArchitectureVersion>1.1.0.2</PackageMaxArchitectureVersion>
+      <PackageMaxArchitectureVersion>1.1.0.3</PackageMaxArchitectureVersion>
     </PackageInfo>
   </PackageInfoList>
 </StoreAssociation>

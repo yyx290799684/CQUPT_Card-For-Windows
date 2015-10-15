@@ -7,11 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text.RegularExpressions;
+using Windows.Data.Xml.Dom;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Phone.UI.Input;
 using Windows.Storage;
 using Windows.UI.Core;
+using Windows.UI.Notifications;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -100,58 +102,73 @@ namespace CQUPT_一卡通_消费
 
         private async void ResponseStreamCallbackPost(IAsyncResult result)
         {
-            HttpWebRequest httpWebRequest = (HttpWebRequest)result.AsyncState;
-            WebResponse webResponse = httpWebRequest.EndGetResponse(result);
-            using (Stream stream = webResponse.GetResponseStream())
-            using (StreamReader reader = new StreamReader(stream))
+            try
             {
-                string mcontent = reader.ReadToEnd();
-                string content = ConvertUnicodeStringToChinese(mcontent);
-                Debug.WriteLine(content);
-                if (content.IndexOf("jyls") != -1)
+                HttpWebRequest httpWebRequest = (HttpWebRequest)result.AsyncState;
+                WebResponse webResponse = httpWebRequest.EndGetResponse(result);
+                using (Stream stream = webResponse.GetResponseStream())
+                using (StreamReader reader = new StreamReader(stream))
                 {
-                    string cardName = (content.Substring(content.IndexOf("xm") + 5, content.IndexOf("sj") - 3 - content.IndexOf("xm") - 5));
-                    bool iscardNameAndcardNameInput;
-                    Debug.WriteLine(cardNameInput);
-                    Debug.WriteLine(cardName);
-                    Debug.WriteLine(cardName.Equals(cardNameInput));
-                    iscardNameAndcardNameInput = cardName.Equals(cardNameInput);
-                    if (iscardNameAndcardNameInput)
+                    string mcontent = reader.ReadToEnd();
+                    string content = ConvertUnicodeStringToChinese(mcontent);
+                    Debug.WriteLine(content);
+                    if (content.IndexOf("jyls") != -1)
                     {
-                        _appSetting.Values["cardName"] = cardName;
-                        Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                            {
-                                Frame.Navigate(typeof(MainPage));
-                            });
+                        string cardName = (content.Substring(content.IndexOf("xm") + 5, content.IndexOf("sj") - 3 - content.IndexOf("xm") - 5));
+                        bool iscardNameAndcardNameInput;
+                        Debug.WriteLine(cardNameInput);
+                        Debug.WriteLine(cardName);
+                        Debug.WriteLine(cardName.Equals(cardNameInput));
+                        iscardNameAndcardNameInput = cardName.Equals(cardNameInput);
+                        if (iscardNameAndcardNameInput)
+                        {
+                            _appSetting.Values["cardName"] = cardName;
+                            Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                                {
+                                    Frame.Navigate(typeof(MainPage));
+                                });
+                        }
+                        else
+                        {
+                            Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                                {
+                                    var toast = new ToastPrompt
+                                    {
+                                        Title = "错误",
+                                        Message = "输入信息有误",
+                                    };
+                                    toast.Show();
+                                    LoginProgressBar.Visibility = Visibility.Collapsed;
+                                });
+                        }
                     }
                     else
                     {
                         Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                        {
+                            var toast = new ToastPrompt
                             {
-                                var toast = new ToastPrompt
-                                {
-                                    Title = "错误",
-                                    Message = "输入信息有误",
-                                };
-                                toast.Show();
-                                LoginProgressBar.Visibility = Visibility.Collapsed;
-                            });
+                                Title = "错误",
+                                Message = "无此卡信息",
+                            };
+                            toast.Show();
+                            LoginProgressBar.Visibility = Visibility.Collapsed;
+                        });
                     }
                 }
-                else
-                {
-                    Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                    {
-                        var toast = new ToastPrompt
-                        {
-                            Title = "错误",
-                            Message = "无此卡信息",
-                        };
-                        toast.Show();
-                        LoginProgressBar.Visibility = Visibility.Collapsed;
-                    });
-                }
             }
+            catch(WebException)
+            {
+                XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText01);
+                XmlNodeList elements = toastXml.GetElementsByTagName("text");
+                elements[0].AppendChild(toastXml.CreateTextNode("网络君开小差了"));
+                ToastNotification toast = new ToastNotification(toastXml);
+                //toast.Activated += toast_Activated;//点击
+                //toast.Dismissed += toast_Dismissed;//消失
+                //toast.Failed += toast_Failed;//消除
+                ToastNotificationManager.CreateToastNotifier().Show(toast);
+            }
+
         }
 
 

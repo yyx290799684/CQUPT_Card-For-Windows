@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQUPT_一卡通_消费", "CQUPT_一卡通_消费\CQUPT_一卡通_消费.csproj", "{6DBACC10-E15B-4DD1-B3DD-2DE69F88C0A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "一卡通_WPF", "一卡通_WPF\一卡通_WPF.csproj", "{5C365826-5BDA-49DB-94EA-E69B78CF77A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,14 @@ Global
 		{6DBACC10-E15B-4DD1-B3DD-2DE69F88C0A9}.Release|x86.ActiveCfg = Release|x86
 		{6DBACC10-E15B-4DD1-B3DD-2DE69F88C0A9}.Release|x86.Build.0 = Release|x86
 		{6DBACC10-E15B-4DD1-B3DD-2DE69F88C0A9}.Release|x86.Deploy.0 = Release|x86
+		{5C365826-5BDA-49DB-94EA-E69B78CF77A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C365826-5BDA-49DB-94EA-E69B78CF77A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C365826-5BDA-49DB-94EA-E69B78CF77A5}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{5C365826-5BDA-49DB-94EA-E69B78CF77A5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5C365826-5BDA-49DB-94EA-E69B78CF77A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C365826-5BDA-49DB-94EA-E69B78CF77A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C365826-5BDA-49DB-94EA-E69B78CF77A5}.Release|ARM.ActiveCfg = Release|Any CPU
+		{5C365826-5BDA-49DB-94EA-E69B78CF77A5}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
