@@ -33,16 +33,16 @@ namespace CQUPT_card_UWP
         public string sb { get; set; }
         public string place { get; set; }
 
-        public void GetListAttribute(JObject JWListJObject)
+        public void GetListAttribute(JObject MoneyListJObject)
         {
-            jyls = JWListJObject["jyls"].ToString();//流水号
-            xm = JWListJObject["xm"].ToString();//姓名
-            sj = JWListJObject["sj"].ToString();//时间
-            lx = JWListJObject["lx"].ToString();//类型
-            je = JWListJObject["je"].ToString();//金额
-            ye = "余额：" + JWListJObject["ye"].ToString();//余额
-            sh = JWListJObject["sh"].ToString();//商户
-            sb = JWListJObject["sb"].ToString();//设备
+            jyls = MoneyListJObject["jyls"].ToString();//流水号
+            xm = MoneyListJObject["xm"].ToString();//姓名
+            sj = MoneyListJObject["sj"].ToString();//时间
+            lx = MoneyListJObject["lx"].ToString();//类型
+            je = MoneyListJObject["je"].ToString();//金额
+            ye = "余额：" + MoneyListJObject["ye"].ToString();//余额
+            sh = MoneyListJObject["sh"].ToString();//商户
+            sb = MoneyListJObject["sb"].ToString();//设备
             place = sh + " " + sb;
         }
 

@@ -36,6 +36,7 @@
         <Grid Background="#068cfd" Grid.Row="0">
             <Grid Name="MoneyTitleGrid"  HorizontalAlignment="Stretch">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <AppBarToggleButton  Name="MoneyBackAppBarButton" Icon="Back" Foreground="White" Visibility="Collapsed" Click="MoneyBackAppBarButton_Click"/>
                     <TextBlock Name="MoneyTitleTextBlock" Text="消费记录" Foreground="White" Margin="10,0,0,0"  FontSize="20" FontWeight="Light" VerticalAlignment="Center" FontFamily="Microsoft YaHei UI"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -90,24 +91,24 @@
                                                     <!--地点-->
                                                     <StackPanel Grid.Column="0" Orientation="Horizontal">
                                                         <Image Source="/Assets/Marker-64.png" Margin="0,0,5,0" Height="20"/>
-                                                        <TextBlock Text="{Binding sh}" TextTrimming="WordEllipsis"  Foreground="#333" FontSize="12" VerticalAlignment="Center" FontWeight="Light" FontFamily="Microsoft YaHei UI"/>
+                                                        <TextBlock Text="{Binding sh}" TextTrimming="WordEllipsis"  Foreground="#333" FontSize="11" VerticalAlignment="Center" FontWeight="Light" FontFamily="Microsoft YaHei UI"/>
                                                     </StackPanel>
                                                     <!--余额-->
-                                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                    <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="-10,0,0,0">
                                                         <Image Source="/Assets/Japanese Yen-64.png" Margin="0,0,5,0" Height="20"/>
-                                                        <TextBlock Text="{Binding ye}" Foreground="#333" FontSize="12" VerticalAlignment="Center" FontWeight="Light" FontFamily="Microsoft YaHei UI"/>
+                                                        <TextBlock Text="{Binding ye}" Foreground="#333" FontSize="11" VerticalAlignment="Center" FontWeight="Light" FontFamily="Microsoft YaHei UI"/>
                                                     </StackPanel>
                                                 </Grid>
                                             </Grid>
 
                                             <!--右边总-->
-                                            <Grid Grid.Column="1" MinWidth="90">
+                                            <Grid Grid.Column="0" HorizontalAlignment="Right" >
                                                 <TextBlock Text="{Binding je}" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#068cfd" FontSize="25" FontWeight="Light" FontFamily="Microsoft YaHei UI"/>
                                             </Grid>
                                             <!--分割线-->
                                         </Grid>
-                                        <Line X1="0" X2="2000" Y1="0" Y2="1" Height="1" VerticalAlignment="Bottom" Stroke="#E6E6E6" StrokeThickness="1"></Line>
-                                        <Line X1="0" X2="2000" Y1="1" Y2="0" Height="1" VerticalAlignment="Bottom" Stroke="#E6E6E6" StrokeThickness="1"></Line>
+                                        <Line X1="0" X2="6000" Y1="0" Y2="1" Height="1" VerticalAlignment="Bottom" Stroke="#E6E6E6" StrokeThickness="1"></Line>
+                                        <Line X1="0" X2="6000" Y1="1" Y2="0" Height="1" VerticalAlignment="Bottom" Stroke="#E6E6E6" StrokeThickness="1"></Line>
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>

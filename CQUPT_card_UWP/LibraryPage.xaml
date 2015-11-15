@@ -8,6 +8,59 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Background="#068cfd" Grid.Row="0">
+            <Grid Name="LibraryTitleGrid"  HorizontalAlignment="Stretch">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <TextBlock Name="LibraryTitleTextBlock" Text="图书借阅" Foreground="White" Margin="10,0,0,0"  FontSize="20" FontWeight="Light" VerticalAlignment="Center" FontFamily="Microsoft YaHei UI"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <AppBarButton Name="LibraryRefreshAppBarButton" Icon="Refresh" Foreground="White" Click="LibraryRefreshAppBarButton_Click"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <ScrollViewer HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Hidden">
+                <ListView Name="LibraryListView" IsItemClickEnabled="True" HorizontalAlignment="Stretch">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="White" Margin="-12,0">
+                                <Grid>
+                                    <Grid  Margin="5">
+                                        <StackPanel>
+                                            <TextBlock Margin="2,10" Name="BookName" TextTrimming="WordEllipsis" Text="{Binding tsmc}" FontSize="18" FontWeight="Bold" Foreground="#38b58f"></TextBlock>
+                                            <Grid Margin="10,5">
+                                                <TextBlock Name="BookStart" Text="{Binding jsrq}" FontSize="12" Foreground="Gray"></TextBlock>
+                                                <TextBlock Name="BookFinsh" Text="{Binding yhrq}" FontSize="12" Foreground="Gray" HorizontalAlignment="Right"></TextBlock>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Line Stroke="#E6E6E6" X1="0" X2="6000" StrokeThickness="1"></Line>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
 
+            <!--列表的加载条-->
+            <StackPanel Name="LibraryListProgressStackPanel" VerticalAlignment="Center" Margin="0,20">
+                <ProgressBar IsIndeterminate="True" />
+                <TextBlock Text="疯狂加载中..." HorizontalAlignment="Center" FontWeight="Light" Foreground="Gray" FontSize="15" Margin="0,5" FontFamily="Microsoft YaHei UI" />
+            </StackPanel>
+            <!--列表的失败报错-->
+            <StackPanel Name="LibraryListFailedStackPanel" Visibility="Collapsed" VerticalAlignment="Center" Margin="0,20" Tapped="LibraryListFailedStackPanel_Tapped">
+                <Image Source="Assets/ic_failed.png" Width="80" HorizontalAlignment="Center" />
+                <TextBlock Text="加载失败，点击重试" HorizontalAlignment="Center" FontWeight="Light" Foreground="Gray" FontSize="15" FontFamily="Microsoft YaHei UI"  />
+            </StackPanel>
+            <StackPanel Name="NullBookStackPanel" Visibility="Collapsed" VerticalAlignment="Center">
+                <Image Source="Assets/emoji.png" Width="200" Margin="0,20"></Image>
+                <TextBlock Text="看来你不是个爱读书的孩子" FontSize="20" HorizontalAlignment="Center" Foreground="Black"></TextBlock>
+            </StackPanel>
+
+        </Grid>
     </Grid>
 </Page>

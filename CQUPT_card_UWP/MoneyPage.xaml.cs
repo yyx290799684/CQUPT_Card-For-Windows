@@ -80,9 +80,9 @@ namespace CQUPT_card_UWP
 
         private void App_BackRequested(object sender, BackRequestedEventArgs e)
         {
+            e.Handled = true; //通知系统已经更改返回键
             if (MoneyListgrid.Visibility == Visibility.Collapsed)
                 show = false;
-
             MoneyContentGrid.Visibility = Visibility.Collapsed;
             MoneyListgrid.Visibility = Visibility.Visible;
             MoneyListView.SelectedIndex = -1;
@@ -162,15 +162,26 @@ namespace CQUPT_card_UWP
         {
             CardInfo cardInfoitem = new CardInfo(((CardInfo)e.ClickedItem).jyls, ((CardInfo)e.ClickedItem).xm, ((CardInfo)e.ClickedItem).sj, ((CardInfo)e.ClickedItem).lx, ((CardInfo)e.ClickedItem).je, ((CardInfo)e.ClickedItem).ye, ((CardInfo)e.ClickedItem).sh, ((CardInfo)e.ClickedItem).sb);
             MoneyFrame.Visibility = Visibility.Visible;
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
-            SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
-
+            //SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            //SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
+            MoneyBackAppBarButton.Visibility = Visibility.Visible;
             if (!show)
             {
                 MoneyListgrid.Visibility = Visibility.Collapsed;
             }
             MoneyContentGrid.Visibility = Visibility.Visible;
             this.MoneyFrame.Navigate(typeof(MoneyContentPage), cardInfoitem);
+        }
+
+        private void MoneyBackAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            MoneyBackAppBarButton.IsChecked =false;
+            if (MoneyListgrid.Visibility == Visibility.Collapsed)
+                show = false;
+            MoneyContentGrid.Visibility = Visibility.Collapsed;
+            MoneyListgrid.Visibility = Visibility.Visible;
+            MoneyListView.SelectedIndex = -1;
+            MoneyBackAppBarButton.Visibility = Visibility.Collapsed;
         }
     }
 }

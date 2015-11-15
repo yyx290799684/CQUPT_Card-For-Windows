@@ -104,5 +104,20 @@ namespace CQUPT_card_UWP
             //TODO: 保存应用程序状态并停止任何后台活动
             deferral.Complete();
         }
+        protected override void OnActivated(IActivatedEventArgs args)
+        {
+            // 通过协议激活应用程序时
+            if (args.Kind == ActivationKind.Protocol)
+            {
+                ProtocolActivatedEventArgs protocolArgs = args as ProtocolActivatedEventArgs;
+                Frame rootFrame = new Frame();
+                string tempUri = protocolArgs.Uri.OriginalString;
+                // 获取要导航到的页面(在"testdemo://"后面)
+                rootFrame.Navigate(typeof(InputPage));
+                Window.Current.Content = rootFrame;
+                Window.Current.Activate();
+            }
+        }
+
     }
 }

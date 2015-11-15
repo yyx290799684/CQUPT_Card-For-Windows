@@ -15,10 +15,6 @@
                     <ColumnDefinition Width="48" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <!-- Showing a ToolTip and the Label is redundant.  We put the ToolTip on the icon.
-                     It appears when the user hovers over the icon, but not the label which provides
-                     value when the SplitView is 'Compact' while reducing the likelihood of showing
-                     redundant information when the label is shown.-->
                 <FontIcon x:Name="Glyph" FontSize="20" Glyph="{x:Bind SymbolAsChar}" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTipService.ToolTip="{x:Bind Label}"/>
                 <Image x:Name="Image" Width="20" Height="20" Source="{Binding Image}" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTipService.ToolTip="{x:Bind Label}"/>
                 <TextBlock x:Name="Text" Grid.Column="1" Text="{x:Bind Label}" />
@@ -28,16 +24,34 @@
     <Grid>
         <SplitView x:Name="RootSplitView" OpenPaneLength="250" CompactPaneLength="48"  DisplayMode="CompactOverlay" IsPaneOpen="False">
             <SplitView.Pane>
-                <!--重写的ListView-->
-                <controls:NavMenuListView x:Name="NavMenuList"
+                <StackPanel>
+                    <!--重写的ListView-->
+                    <controls:NavMenuListView x:Name="NavMenuList"
                                           TabIndex="3"
                                           Margin="0,48,0,0"
                                           ContainerContentChanging="NavMenuItemContainerContentChanging"
                                           ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"
                                           ItemTemplate="{StaticResource NavMenuItemTemplate}"
                                           ItemInvoked="NavMenuList_ItemInvoked">
-                </controls:NavMenuListView>
-
+                    </controls:NavMenuListView>
+                    <Grid Height="96" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="48" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Height="48" VerticalAlignment="Top">
+                            <Image x:Name="Image" Width="20" Height="20" Source="/Assets/Info-64.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Grid>
+                        <Grid Height="96" Grid.Column="1" VerticalAlignment="Top">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="48"/>
+                                <RowDefinition Height="48"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" VerticalAlignment="Center" Name="nameTextBlock" Text="姓名：王尼玛"/>
+                            <TextBlock Grid.Row="1" VerticalAlignment="Center" Name="cardTextBlock" Text="卡号：1008600"/>
+                        </Grid>
+                    </Grid>
+                </StackPanel>
             </SplitView.Pane>
             <!--Frame里面放导航到的Page-->
             <Frame x:Name="frame"

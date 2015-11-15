@@ -103,6 +103,10 @@
     <Compile Include="Controls\NavMenuListView.cs" />
     <Compile Include="Data\CardInfo.cs" />
     <Compile Include="Data\Content.cs" />
+    <Compile Include="Data\LibraryInfo.cs" />
+    <Compile Include="InputPage.xaml.cs">
+      <DependentUpon>InputPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LibraryPage.xaml.cs">
       <DependentUpon>LibraryPage.xaml</DependentUpon>
     </Compile>
@@ -127,9 +131,16 @@
     <None Include="CQUPT_card_UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Expensive 2-64.png" />
     <Content Include="Assets\ic_failed.png" />
+    <Content Include="Assets\Info-64.png" />
     <Content Include="Assets\Japanese Yen-64.png" />
+    <Content Include="Assets\logo_cqupt.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Marker-64.png" />
     <Content Include="Assets\Reading-64.png" />
     <Content Include="Properties\Default.rd.xml" />
@@ -146,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="InputPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="LibraryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
