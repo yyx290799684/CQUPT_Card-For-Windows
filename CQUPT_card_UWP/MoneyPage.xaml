@@ -1,0 +1,156 @@
+﻿<Page
+    Name="mpage"
+    x:Class="CQUPT_card_UWP.MoneyPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CQUPT_card_UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="VisualState0">
+                    <VisualState.Setters>
+                    </VisualState.Setters>
+                    <!--<VisualState.StateTriggers>
+                        <AdaptiveTrigger/>
+                    </VisualState.StateTriggers>-->
+                </VisualState>
+                <VisualState x:Name="VisualState850">
+                    <!--<VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="850"/>
+                    </VisualState.StateTriggers>-->
+                    <VisualState.Setters>
+                        <Setter Target="MoneyContentGrid.(FrameworkElement.Width)" Value="300"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <!--header-->
+        <Grid Background="#068cfd" Grid.Row="0">
+            <Grid Name="MoneyTitleGrid"  HorizontalAlignment="Stretch">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <TextBlock Name="MoneyTitleTextBlock" Text="消费记录" Foreground="White" Margin="10,0,0,0"  FontSize="20" FontWeight="Light" VerticalAlignment="Center" FontFamily="Microsoft YaHei UI"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <AppBarButton Name="MoneyRefreshAppBarButton" Icon="Refresh" Foreground="White" Click="MoneyRefreshAppBarButton_Click"/>
+                </StackPanel>
+            </Grid>
+            <!--<Grid Name="TitlecutoffLineGrid" Visibility="Collapsed" Margin="500,0,0,0" Width="1"  HorizontalAlignment="Left">
+                <Line Y1="0" Y2="48" Stroke="#58b3ff" StrokeThickness="1"/>
+            </Grid>
+            <TextBlock Name="MoneyContentTextBlock" Visibility="Collapsed" Text="消费详情" Foreground="White" Margin="510,0,0,0"  FontSize="20" FontWeight="Light" VerticalAlignment="Center" FontFamily="Microsoft YaHei UI"/>-->
+        </Grid>
+
+        <!--实体-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <!--列表-->
+            <Grid x:Name="MoneyListgrid" Grid.Column="0">
+                <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <ListView Name="MoneyListView" IsItemClickEnabled="True" ItemClick="MoneyListView_ItemClick" HorizontalAlignment="Stretch" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate >
+                                    <Grid Margin="-12,0">
+                                        <Grid Margin="15,10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <!--左边总-->
+                                            <Grid Grid.Column="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <!--时间-->
+                                                <TextBlock Grid.Row="0" Text="{Binding sj}" TextTrimming="WordEllipsis" HorizontalAlignment="Stretch" FontSize="16" Foreground="#333333" FontFamily="Microsoft YaHei UI" ></TextBlock>
+                                                <!--地点余额-->
+                                                <Grid Grid.Row="1">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition/>
+                                                        <ColumnDefinition/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <!--地点-->
+                                                    <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                                        <Image Source="/Assets/Marker-64.png" Margin="0,0,5,0" Height="20"/>
+                                                        <TextBlock Text="{Binding sh}" TextTrimming="WordEllipsis"  Foreground="#333" FontSize="12" VerticalAlignment="Center" FontWeight="Light" FontFamily="Microsoft YaHei UI"/>
+                                                    </StackPanel>
+                                                    <!--余额-->
+                                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                        <Image Source="/Assets/Japanese Yen-64.png" Margin="0,0,5,0" Height="20"/>
+                                                        <TextBlock Text="{Binding ye}" Foreground="#333" FontSize="12" VerticalAlignment="Center" FontWeight="Light" FontFamily="Microsoft YaHei UI"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Grid>
+
+                                            <!--右边总-->
+                                            <Grid Grid.Column="1" MinWidth="90">
+                                                <TextBlock Text="{Binding je}" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#068cfd" FontSize="25" FontWeight="Light" FontFamily="Microsoft YaHei UI"/>
+                                            </Grid>
+                                            <!--分割线-->
+                                        </Grid>
+                                        <Line X1="0" X2="2000" Y1="0" Y2="1" Height="1" VerticalAlignment="Bottom" Stroke="#E6E6E6" StrokeThickness="1"></Line>
+                                        <Line X1="0" X2="2000" Y1="1" Y2="0" Height="1" VerticalAlignment="Bottom" Stroke="#E6E6E6" StrokeThickness="1"></Line>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <StackPanel Grid.Row="1">
+                            <!--列表的加载条-->
+                            <StackPanel Name="MoneyListProgressStackPanel" VerticalAlignment="Center" Margin="0,20">
+                                <ProgressBar IsIndeterminate="True" />
+                                <TextBlock Text="疯狂加载中..." HorizontalAlignment="Center" FontWeight="Light" Foreground="Gray" FontSize="15" Margin="0,5" FontFamily="Microsoft YaHei UI" />
+                            </StackPanel>
+                            <!--列表的失败报错-->
+                            <StackPanel Name="MoneyListFailedStackPanel" Visibility="Collapsed" VerticalAlignment="Center" Margin="0,20" Tapped="MoneyListFailedStackPanel_Tapped">
+                                <Image Source="Assets/ic_failed.png" Width="80" HorizontalAlignment="Center" />
+                                <TextBlock Text="加载失败，点击重试" HorizontalAlignment="Center" FontWeight="Light" Foreground="Gray" FontSize="15" FontFamily="Microsoft YaHei UI"  />
+                            </StackPanel>
+                            <!--继续加载-->
+                            <Grid Name="continueMoneyGrid" Height="50" Tapped="continueMoneyGrid_Tapped" Visibility="Collapsed">
+                                <TextBlock VerticalAlignment="Center" Text="继续加载..." HorizontalAlignment="Center" FontWeight="Light" Foreground="Gray" FontSize="15" Margin="0,5" FontFamily="Microsoft YaHei UI"/>
+                            </Grid>
+                            <!--到底了-->
+                            <Grid Name="endMoneyGrid" Height="50" Visibility="Collapsed">
+                                <TextBlock VerticalAlignment="Center" Text="到底了" HorizontalAlignment="Center" FontWeight="Light" Foreground="Gray" FontSize="15" Margin="0,5" FontFamily="Microsoft YaHei UI"/>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </Grid>
+
+            <!--详情-->
+            <Grid Name="MoneyContentGrid" Grid.Column="1">
+                <Line Name="cutoffLine" Stroke="Gray" StrokeThickness="1"/>
+                <Frame x:Name="frame" Margin="1,0,0,0">
+                    <Frame.ContentTransitions>
+                        <TransitionCollection>
+                            <NavigationThemeTransition>
+                                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                                    <EntranceNavigationTransitionInfo/>
+                                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                            </NavigationThemeTransition>
+                        </TransitionCollection>
+                    </Frame.ContentTransitions>
+                </Frame>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
