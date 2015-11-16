@@ -17,8 +17,8 @@
         </StackPanel>
 
         <StackPanel Margin="15" VerticalAlignment="Center">
-            <TextBox InputScope="Number" Width="250" Name="cardIdTextBox" PlaceholderText="输入要查询的一卡通统一识别码" TextChanged="cardIdTextBox_TextChanged"></TextBox>
-            <TextBox InputScope="ChineseHalfWidth" Margin="0,20,0,0" Width="250" Name="cardNameTextBox" PlaceholderText="输入一卡通所有者姓名" TextChanged="cardNameTextBox_TextChanged"></TextBox>
+            <TextBox InputScope="Number" Width="250" Name="cardIdTextBox" PlaceholderText="输入要查询的一卡通统一识别码" TextChanged="cardIdTextBox_TextChanged" KeyUp="TextBox_KeyUp"></TextBox>
+            <TextBox InputScope="ChineseHalfWidth" Margin="0,20,0,0" Width="250" Name="cardNameTextBox" PlaceholderText="输入一卡通所有者姓名" TextChanged="cardNameTextBox_TextChanged"  KeyUp="TextBox_KeyUp"></TextBox>
             <Grid Background="White" Margin="0,20,0,0" Width="250">
                 <Button Name="cardIdButton" IsEnabled="False" Content="确 认" Background="#55068CFD" Click="cardIdButton_Click" HorizontalAlignment="Stretch" ></Button>
                 <ProgressBar  VerticalAlignment="Center" Name="LoginProgressBar" Visibility="Collapsed" IsIndeterminate="True" Margin="0,5,0,0" />

@@ -52,13 +52,21 @@ namespace CQUPT_card_UWP
         /// 此参数通常用于配置页。</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            UmengSDK.UmengAnalytics.TrackPageStart("InputPage");
         }
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+            UmengSDK.UmengAnalytics.TrackPageEnd("InputPage");
         }
 
 
-        private async void cardIdButton_Click(object sender, RoutedEventArgs e)
+        private void cardIdButton_Click(object sender, RoutedEventArgs e)
+        {
+            Login();
+           
+        }
+
+        private async void Login()
         {
             LoginProgressBar.Visibility = Visibility.Visible;
             string money = await NetWork.getHttpWebRequest("oracle_ykt0529.php?UsrID=" + cardIdTextBox.Text + "&page=1");
@@ -143,6 +151,24 @@ namespace CQUPT_card_UWP
             return outStr;
         }
 
+        private void Input_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.VirtualKey == Windows.System.VirtualKey.Enter)
+            {
+                Debug.WriteLine("enter");
+            }
+        }
 
+        private void TextBox_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                Debug.WriteLine("enter");
+                if (cardIdTextBox.Text != "" && cardNameTextBox.Text != "")
+                    Login();
+                else
+                    Utils.Message("信息不完全");
+            }
+        }
     }
 }

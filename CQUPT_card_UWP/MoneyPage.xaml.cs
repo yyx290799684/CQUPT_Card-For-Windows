@@ -78,6 +78,11 @@ namespace CQUPT_card_UWP
             UmengSDK.UmengAnalytics.TrackPageStart("MoneyPage");
         }
 
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            UmengSDK.UmengAnalytics.TrackPageEnd("MoneyPage");
+        }
+
         private void App_BackRequested(object sender, BackRequestedEventArgs e)
         {
             e.Handled = true; //通知系统已经更改返回键

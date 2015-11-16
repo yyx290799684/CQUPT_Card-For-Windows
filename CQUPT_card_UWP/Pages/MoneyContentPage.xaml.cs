@@ -42,9 +42,13 @@ namespace CQUPT_card_UWP.Pages
             ContentInfo.Add(new Content { lx = "", xq = card.ye });
             ContentInfo.Add(new Content { lx = "商户：", xq = card.sh });
             ContentInfo.Add(new Content { lx = "设备：", xq = card.sb });
-            
+
+            UmengSDK.UmengAnalytics.TrackPageStart("MoneyContentPage");
+        }
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            UmengSDK.UmengAnalytics.TrackPageEnd("MoneyContentPage");
         }
 
-        
     }
 }

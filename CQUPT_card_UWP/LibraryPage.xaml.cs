@@ -44,6 +44,10 @@ namespace CQUPT_card_UWP
             initLibraryList();
             UmengSDK.UmengAnalytics.TrackPageStart("LibraryPage");
         }
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            UmengSDK.UmengAnalytics.TrackPageEnd("LibraryPage");
+        }
 
         private async void initLibraryList()
         {
@@ -96,6 +100,6 @@ namespace CQUPT_card_UWP
             initLibraryList();
         }
 
-
+       
     }
 }
