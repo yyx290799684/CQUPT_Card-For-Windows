@@ -88,6 +88,7 @@ namespace CQUPT_card_UWP
             MoneyListView.SelectedIndex = -1;
             SystemNavigationManager.GetForCurrentView().BackRequested -= App_BackRequested;
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+            App.isShowContent = false;
         }
 
         private async void initMoneyList(int page = 1)
@@ -95,14 +96,10 @@ namespace CQUPT_card_UWP
             MoneyListFailedStackPanel.Visibility = Visibility.Collapsed;
             MoneyListProgressStackPanel.Visibility = Visibility.Visible;
             endMoneyGrid.Visibility = Visibility.Collapsed;
-#if DEBUG
-            string money = await NetWork.getHttpWebRequest("oracle_ykt0529.php?UsrID=1632776&page=" + page);
-#else 
-            string money = await NetWork.getHttpWebRequest("oracle_ykt0529.php?UsrID=" + appSetting.Values["CardNum"] + "&page=" + page);
-#endif
+            string money = await NetWork.getHttpWebRequest("oracle_ykt0529.php?UsrID=" + appSetting.Values["cardId"].ToString() + "&page=" + page);
             Debug.WriteLine("money->" + money);
             MoneyListProgressStackPanel.Visibility = Visibility.Collapsed;
-            if (money != "")
+            if (money != "{\"data\":}")
             {
                 try
                 {
@@ -162,9 +159,10 @@ namespace CQUPT_card_UWP
         {
             CardInfo cardInfoitem = new CardInfo(((CardInfo)e.ClickedItem).jyls, ((CardInfo)e.ClickedItem).xm, ((CardInfo)e.ClickedItem).sj, ((CardInfo)e.ClickedItem).lx, ((CardInfo)e.ClickedItem).je, ((CardInfo)e.ClickedItem).ye, ((CardInfo)e.ClickedItem).sh, ((CardInfo)e.ClickedItem).sb);
             MoneyFrame.Visibility = Visibility.Visible;
-            //SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
-            //SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
-            MoneyBackAppBarButton.Visibility = Visibility.Visible;
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
+            App.isShowContent = true;
+            //MoneyBackAppBarButton.Visibility = Visibility.Visible;
             if (!show)
             {
                 MoneyListgrid.Visibility = Visibility.Collapsed;
@@ -175,7 +173,7 @@ namespace CQUPT_card_UWP
 
         private void MoneyBackAppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            MoneyBackAppBarButton.IsChecked =false;
+            MoneyBackAppBarButton.IsChecked = false;
             if (MoneyListgrid.Visibility == Visibility.Collapsed)
                 show = false;
             MoneyContentGrid.Visibility = Visibility.Collapsed;

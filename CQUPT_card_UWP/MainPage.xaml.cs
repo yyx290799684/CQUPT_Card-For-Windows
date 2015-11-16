@@ -49,7 +49,7 @@ namespace CQUPT_card_UWP
         public MainPage()
         {
             this.InitializeComponent();
-            // HamburgerButton.Click += HamburgerButton_Click;
+            //HamburgerButton.Click += HamburgerButton_Click;
             this.Loaded += (sender, args) =>
             {
                 Current = this;
@@ -73,9 +73,14 @@ namespace CQUPT_card_UWP
 
         private void SystemNavigationManager_BackRequseted(object sender, BackRequestedEventArgs e)
         {
-            bool handled = e.Handled;
-            this.BackRequested(ref handled);
-            e.Handled = handled;
+            //bool handled = e.Handled;
+            //this.BackRequested(ref handled);
+            //e.Handled = handled;
+            if (!App.isShowContent)
+            {
+                e.Handled = true;
+                Application.Current.Exit();
+            }
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -103,19 +108,12 @@ namespace CQUPT_card_UWP
         //    SplitSet.IsPaneOpen = !SplitSet.IsPaneOpen;
         //}
 
-        //protected override void OnNavigatedTo(NavigationEventArgs e)
-        //{
-        //    var api = "Windows.UI.ViewManagement.StatusBar";
-        //    if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent(api))
-        //    {
-        //        //await Windows.UI.ViewManagement.StatusBar.GetForCurrentView().HideAsync();
-        //        var statusbar = StatusBar.GetForCurrentView();
-        //        statusbar.BackgroundOpacity = 1;
-        //        statusbar.BackgroundColor = Colors.CornflowerBlue;
-
-        //    }
-
-        //}
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var xmID = (string[])e.Parameter;
+            nameTextBlock.Text = "姓名：" + xmID[0];
+            cardTextBlock.Text = "卡号：" + xmID[1];
+        }
 
         //private string ConvertToUpper(string txt)
         //{
@@ -161,8 +159,11 @@ namespace CQUPT_card_UWP
                     item.DestPage != this.AppFrame.CurrentSourcePageType)
                 {
                     this.AppFrame.Navigate(item.DestPage, item.Arguments);
+                    SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+                    App.isShowContent = false;
                 }
             }
+
         }
 
         /// <summary>

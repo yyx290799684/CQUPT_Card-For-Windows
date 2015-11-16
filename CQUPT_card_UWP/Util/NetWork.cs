@@ -18,8 +18,8 @@ namespace CQUPT_card_UWP.Util
             string content = "";
             return await Task.Run(() =>
             {
-                if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-                {
+                //if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+                //{
                     try
                     {
                         HttpClient httpClient = new HttpClient();
@@ -35,10 +35,10 @@ namespace CQUPT_card_UWP.Util
                     {
                         Debug.WriteLine(e.Message + "网络请求异常");
                     }
-                }
-                else
-                {
-                }
+                //}
+                //else
+                //{
+                //}
                 return "{\"data\":"+content+"}";
 
             });

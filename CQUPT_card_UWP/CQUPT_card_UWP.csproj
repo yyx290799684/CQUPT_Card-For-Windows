@@ -94,6 +94,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Fonts\STCAIYUN.TTF">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>

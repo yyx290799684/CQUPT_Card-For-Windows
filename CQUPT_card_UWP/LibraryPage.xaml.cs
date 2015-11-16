@@ -12,6 +12,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -36,6 +37,7 @@ namespace CQUPT_card_UWP
             this.InitializeComponent();
         }
 
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             LibraryListView.ItemsSource = libraryInfo;
@@ -45,14 +47,10 @@ namespace CQUPT_card_UWP
 
         private async void initLibraryList()
         {
-#if DEBUG
-            string library = await NetWork.getHttpWebRequest("oracle_jscx0428.php?UsrID=1635331");
-#else
-            string library = await NetWork.getHttpWebRequest("oracle_jscx0428.php?UsrID=" + appSetting.Values["CardNum"]);
-#endif
+            string library = await NetWork.getHttpWebRequest("oracle_jscx0428.php?UsrID=" + appSetting.Values["cardId"].ToString());
             Debug.WriteLine("library->" + library);
             LibraryListProgressStackPanel.Visibility = Visibility.Collapsed;
-            if (library != "")
+            if (library != "{\"data\":}")
             {
                 try
                 {
@@ -97,5 +95,7 @@ namespace CQUPT_card_UWP
             LibraryListFailedStackPanel.Visibility = Visibility.Collapsed;
             initLibraryList();
         }
+
+
     }
 }

@@ -47,8 +47,8 @@
                                 <RowDefinition Height="48"/>
                                 <RowDefinition Height="48"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" VerticalAlignment="Center" Name="nameTextBlock" Text="姓名：王尼玛"/>
-                            <TextBlock Grid.Row="1" VerticalAlignment="Center" Name="cardTextBlock" Text="卡号：1008600"/>
+                            <TextBlock Grid.Row="0" VerticalAlignment="Center" Name="nameTextBlock" />
+                            <TextBlock Grid.Row="1" VerticalAlignment="Center" Name="cardTextBlock" />
                         </Grid>
                     </Grid>
                 </StackPanel>

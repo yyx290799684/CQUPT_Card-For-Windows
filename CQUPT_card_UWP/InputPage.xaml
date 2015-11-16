@@ -6,21 +6,22 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    MinHeight="400"
     Background="#068cfd">
 
 
     <Grid Background="#068cfd">
         <StackPanel>
             <Image Source="Assets/logo_cqupt.png" Margin="20,20,20,10" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" ></Image>
-            <TextBlock Text="校园一卡通查询"  Margin="20,10" FontSize="20" HorizontalAlignment="Right"></TextBlock>
+            <TextBlock Text="校园一卡通查询" Foreground="#333" Margin="20,10" FontSize="20" HorizontalAlignment="Right" FontFamily="Fonts/STCAIYUN.ttf#STCAIYUN"></TextBlock>
         </StackPanel>
 
         <StackPanel Margin="15" VerticalAlignment="Center">
-            <TextBox InputScope="Number" Name="cardIdTextBox" PlaceholderText="输入要查询的一卡通统一识别码"></TextBox>
-            <TextBox InputScope="ChineseHalfWidth" Name="cardNameTextBox" PlaceholderText="输入一卡通所有者姓名"></TextBox>
-            <Grid>
-                <Button Name="cardIdButton" Content="确认" Click="cardIdButton_Click" HorizontalAlignment="Stretch"></Button>
-                <ProgressBar VerticalAlignment="Center" Name="LoginProgressBar" Visibility="Collapsed" IsIndeterminate="True" Margin="0,5,0,0" />
+            <TextBox InputScope="Number" Width="250" Name="cardIdTextBox" PlaceholderText="输入要查询的一卡通统一识别码" TextChanged="cardIdTextBox_TextChanged"></TextBox>
+            <TextBox InputScope="ChineseHalfWidth" Margin="0,20,0,0" Width="250" Name="cardNameTextBox" PlaceholderText="输入一卡通所有者姓名" TextChanged="cardNameTextBox_TextChanged"></TextBox>
+            <Grid Background="White" Margin="0,20,0,0" Width="250">
+                <Button Name="cardIdButton" IsEnabled="False" Content="确 认" Background="#55068CFD" Click="cardIdButton_Click" HorizontalAlignment="Stretch" ></Button>
+                <ProgressBar  VerticalAlignment="Center" Name="LoginProgressBar" Visibility="Collapsed" IsIndeterminate="True" Margin="0,5,0,0" />
             </Grid>
         </StackPanel>
 
